@@ -9,6 +9,7 @@ public class InputManager extends InputAdapter {
     private final int left = Input.Keys.LEFT;
     private final int right = Input.Keys.RIGHT;
     private final int attack = Input.Keys.CONTROL_LEFT;
+    private final int jump = Input.Keys.SPACE;
     private ControlComponent controlComponent;
 
     public InputManager(ControlComponent controlComponent) {
@@ -29,6 +30,9 @@ public class InputManager extends InputAdapter {
         if (keycode == attack) {
             controlComponent.setAttack(true);
         }
+        if (keycode == jump) {
+            controlComponent.setJump(true);
+        }
         return false;
 
     }
@@ -44,6 +48,9 @@ public class InputManager extends InputAdapter {
         if (keycode == attack) {
             controlComponent.setAttack(false);
         }
+        //if (keycode == jump) {
+        //    controlComponent.setJump(false);
+        //}
         return false;
     }
 }

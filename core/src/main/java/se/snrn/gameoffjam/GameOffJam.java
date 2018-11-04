@@ -88,26 +88,25 @@ public class GameOffJam extends AbstractApplicationListener {
         engine = new PooledEngine();
 
         engine.addSystem(new Box2DPhysicsSystem(world));
+        engine.addSystem(new ControlSystem());
         engine.addSystem(new RenderingSystem(batch, camera, 32));
+        engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new Box2DPhysicsDebugSystem(world, camera));
         engine.addSystem(new DebugSystem(camera, Input.Keys.TAB));
-        engine.addSystem(new ControlSystem());
-        engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
 
 
-
-        Entity player = PlayerFactory.create(engine, world,0,0);
+        Entity player = PlayerFactory.create(engine, world,0,-HEIGHT/2f);
         engine.addEntity(player);
 
-        Entity player2 = PlayerFactory.create(engine, world,50,0);
-        engine.addEntity(player2);
+        //Entity player2 = PlayerFactory.create(engine, world,250,0);
+        //engine.addEntity(player2);
 
 
-        FloorFactory.create(engine, world, 0, -HEIGHT / 2f);
+        FloorFactory.create(engine, world, 0, (-HEIGHT / 2f)-64);
 
         inputManager = new InputManager(player.getComponent(ControlComponent.class));
 
@@ -124,6 +123,8 @@ public class GameOffJam extends AbstractApplicationListener {
                 console.log(str);
             }
         });
+
+
     }
 
     @Override

@@ -5,10 +5,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
+import com.roaringcatgames.kitten2d.ashley.components.BodyComponent;
 import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
@@ -22,9 +20,9 @@ public class PlayerFactory {
 
         BodyDef bodyDef = new BodyDef();
 
-        bodyDef.position.set(0, 0);
+        bodyDef.position.set(x, y);
 
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         FixtureDef fixtureDef = new FixtureDef();
 
