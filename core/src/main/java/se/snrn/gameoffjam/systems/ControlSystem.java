@@ -44,7 +44,7 @@ public class ControlSystem extends IteratingSystem {
             entity.add(VelocityComponent.create(getEngine()).setSpeed(64, 128));
         }
 
-        if (velocityComponent != null && controlComponent.isJump() && transformComponent.position.y > (-HEIGHT / 2f)+100) {
+        if (velocityComponent != null && controlComponent.isJump() && transformComponent.position.y > (-HEIGHT / 2f) + 100) {
             entity.add(VelocityComponent.create(getEngine()).setSpeed(64, -128));
             controlComponent.setJump(false);
         }
@@ -52,7 +52,5 @@ public class ControlSystem extends IteratingSystem {
             entity.add(VelocityComponent.create(getEngine()).setSpeed(64, 0));
 
         }
-
-        System.out.println(transformComponent.position);
     }
 }

@@ -9,17 +9,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.github.czyzby.kiwi.util.gdx.AbstractApplicationListener;
 import com.github.czyzby.kiwi.util.gdx.asset.Disposables;
+import com.github.czyzby.lml.annotation.LmlActor;
 import com.github.czyzby.lml.parser.LmlParser;
 import com.github.czyzby.lml.parser.action.ActorConsumer;
 import com.github.czyzby.lml.util.Lml;
+import com.kotcrab.vis.ui.widget.VisLabel;
 import com.roaringcatgames.kitten2d.ashley.systems.*;
 import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.Console;
@@ -28,6 +32,7 @@ import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.systems.CameraSystem;
 import se.snrn.gameoffjam.systems.CollisionSystem;
 import se.snrn.gameoffjam.systems.ControlSystem;
+import se.snrn.gameoffjam.systems.UISystem;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -71,9 +76,12 @@ public class GameOffJam extends AbstractApplicationListener {
                     }
                 }).build();
 
+
+
         // Parsing actors defined in main.lml template and adding them to stage:
         parser.fillStage(stage, Gdx.files.internal("ui/templates/main.lml"));
         // Note: there are less verbose and more powerful ways of using LML. See other LML project templates.
+
 
         Gdx.input.setInputProcessor(stage);
 
@@ -95,6 +103,9 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new DebugSystem(camera, Input.Keys.TAB));
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
+
+
+        engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
 

@@ -2,8 +2,8 @@
 <!DOCTYPE table SYSTEM "lml-vis1_8.dtd">
 <table fillparent="true">
     <table align="topleft" expand="true">
-        <label align="top">Test:</label>
-        <label align="top">0</label>
+        <label align="top">Distance:</label>
+        <label align="top" id="distance">0</label>
     </table>
     <table align="top" expand="true">
         <label align="top">Test:</label>
