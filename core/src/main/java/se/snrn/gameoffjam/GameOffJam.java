@@ -21,8 +21,12 @@ import com.github.czyzby.lml.parser.LmlParser;
 import com.github.czyzby.lml.parser.action.ActorConsumer;
 import com.github.czyzby.lml.util.Lml;
 import com.roaringcatgames.kitten2d.ashley.systems.*;
+import com.strongjoshua.console.CommandExecutor;
+import com.strongjoshua.console.Console;
+import com.strongjoshua.console.GUIConsole;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.systems.CameraSystem;
+import se.snrn.gameoffjam.systems.CollisionSystem;
 import se.snrn.gameoffjam.systems.ControlSystem;
 
 /**
@@ -42,6 +46,7 @@ public class GameOffJam extends AbstractApplicationListener {
     private FitViewport viewport;
     private World world;
     private InputManager inputManager;
+    private GUIConsole console;
 
 
     @Override
@@ -90,10 +95,16 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
+        //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
+        engine.addSystem(new CollisionSystem());
 
 
-        Entity player = PlayerFactory.create(engine, world);
+
+        Entity player = PlayerFactory.create(engine, world,0,0);
         engine.addEntity(player);
+
+        Entity player2 = PlayerFactory.create(engine, world,50,0);
+        engine.addEntity(player2);
 
 
         FloorFactory.create(engine, world, 0, -HEIGHT / 2f);
@@ -101,6 +112,18 @@ public class GameOffJam extends AbstractApplicationListener {
         inputManager = new InputManager(player.getComponent(ControlComponent.class));
 
         Gdx.input.setInputProcessor(inputManager);
+        console = new GUIConsole();
+        console.setDisplayKeyID(Input.Keys.NUM_1);
+        console.setCommandExecutor(new CommandExecutor() {
+            @Override
+            protected void setConsole(Console c) {
+                super.setConsole(c);
+            }
+
+            public void testString(String str) {
+                console.log(str);
+            }
+        });
     }
 
     @Override
@@ -114,6 +137,7 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.update(deltaTime);
         stage.act(deltaTime);
         stage.draw();
+        console.draw();
     }
 
     @Override

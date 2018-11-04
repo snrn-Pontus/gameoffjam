@@ -19,6 +19,7 @@ public class InputManager extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
+
         if (keycode == left) {
             controlComponent.setLeft(true);
         }
