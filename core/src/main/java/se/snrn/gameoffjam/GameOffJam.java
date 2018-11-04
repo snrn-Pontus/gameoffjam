@@ -1,5 +1,6 @@
 package se.snrn.gameoffjam;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -19,10 +20,10 @@ import com.github.czyzby.kiwi.util.gdx.asset.Disposables;
 import com.github.czyzby.lml.parser.LmlParser;
 import com.github.czyzby.lml.parser.action.ActorConsumer;
 import com.github.czyzby.lml.util.Lml;
-import com.roaringcatgames.kitten2d.ashley.systems.Box2DPhysicsDebugSystem;
-import com.roaringcatgames.kitten2d.ashley.systems.Box2DPhysicsSystem;
-import com.roaringcatgames.kitten2d.ashley.systems.DebugSystem;
-import com.roaringcatgames.kitten2d.ashley.systems.RenderingSystem;
+import com.roaringcatgames.kitten2d.ashley.systems.*;
+import se.snrn.gameoffjam.components.ControlComponent;
+import se.snrn.gameoffjam.systems.CameraSystem;
+import se.snrn.gameoffjam.systems.ControlSystem;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -40,6 +41,7 @@ public class GameOffJam extends AbstractApplicationListener {
     private OrthographicCamera camera;
     private FitViewport viewport;
     private World world;
+    private InputManager inputManager;
 
 
     @Override
@@ -84,12 +86,20 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new RenderingSystem(batch, camera, 32));
         engine.addSystem(new Box2DPhysicsDebugSystem(world, camera));
         engine.addSystem(new DebugSystem(camera, Input.Keys.TAB));
+        engine.addSystem(new ControlSystem());
+        engine.addSystem(new CameraSystem(camera));
+        engine.addSystem(new MovementSystem());
 
-        engine.addEntity(PlayerFactory.create(engine, world));
+
+        Entity player = PlayerFactory.create(engine, world);
+        engine.addEntity(player);
 
 
-        FloorFactory.create(engine, world, 0, -HEIGHT/2f);
+        FloorFactory.create(engine, world, 0, -HEIGHT / 2f);
 
+        inputManager = new InputManager(player.getComponent(ControlComponent.class));
+
+        Gdx.input.setInputProcessor(inputManager);
     }
 
     @Override

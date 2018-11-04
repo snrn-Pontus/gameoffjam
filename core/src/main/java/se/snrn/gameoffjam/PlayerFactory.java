@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.roaringcatgames.kitten2d.ashley.components.BodyComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
+import se.snrn.gameoffjam.components.ControlComponent;
 
 public class PlayerFactory {
 
@@ -35,9 +36,10 @@ public class PlayerFactory {
 
 
         player
+                .add(ControlComponent.create(engine))
                 .add(TransformComponent.create(engine).setPosition(0, 0).setScale(32, 32))
-                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))))
-                .add(BodyComponent.create(engine).setBody(body));
+                //.add(BodyComponent.create(engine).setBody(body))
+                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))));
 
         return player;
     }
