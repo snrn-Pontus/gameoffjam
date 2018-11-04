@@ -103,7 +103,8 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new DebugSystem(camera, Input.Keys.TAB));
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
-
+        engine.addSystem(new ScreenWrapSystem(new Vector2(0,0),new Vector2(WIDTH,HEIGHT),PPM));
+        engine.addSystem(new TweenSystem());
 
         engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
@@ -112,6 +113,10 @@ public class GameOffJam extends AbstractApplicationListener {
 
         Entity player = PlayerFactory.create(engine, world,0,-HEIGHT/2f);
         engine.addEntity(player);
+
+
+        engine.addEntity(ObstacleFactory.create(engine,world,200,-HEIGHT/2f));
+        engine.addEntity(ObstacleFactory.create(engine,world,600,-HEIGHT/2f));
 
         //Entity player2 = PlayerFactory.create(engine, world,250,0);
         //engine.addEntity(player2);

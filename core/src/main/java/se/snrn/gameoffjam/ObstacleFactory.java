@@ -14,7 +14,7 @@ import se.snrn.gameoffjam.components.CameraComponent;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
 
-public class PlayerFactory {
+public class ObstacleFactory {
 
     public static Entity create(Engine engine, World world, float x, float y) {
         Entity player = engine.createEntity();
@@ -39,11 +39,7 @@ public class PlayerFactory {
 
 
         player
-                .add(ControlComponent.create(engine))
                 .add(TransformComponent.create(engine).setPosition(x, y).setScale(32, 32))
-                .add(CameraComponent.create(engine))
-                .add(PlayerComponent.create(engine))
-                .add(ScreenWrapComponent.create(engine).setMode(ScreenWrapMode.HORIZONTAL).setMinMaxPos(0,1280/32f))
                 //.add(BodyComponent.create(engine).setBody(body))
                 .add(BoundsComponent.create(engine).setBounds(-32, -32, 64, 64))
                 .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))));
