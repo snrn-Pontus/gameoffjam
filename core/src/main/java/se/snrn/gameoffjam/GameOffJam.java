@@ -89,6 +89,7 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new ControlSystem());
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new MovementSystem());
+        engine.addSystem(new BoundsSystem());
 
 
         Entity player = PlayerFactory.create(engine, world);
