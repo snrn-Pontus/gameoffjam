@@ -1,9 +1,7 @@
 package se.snrn.gameoffjam.systems;
 
 import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenEquation;
 import aurelienribon.tweenengine.TweenEquations;
-import aurelienribon.tweenengine.equations.Quad;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -12,6 +10,7 @@ import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TweenComponent;
 import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
+import se.snrn.gameoffjam.BulletFactory;
 import se.snrn.gameoffjam.components.ControlComponent;
 
 import static se.snrn.gameoffjam.GameOffJam.HEIGHT;
@@ -37,10 +36,10 @@ public class ControlSystem extends IteratingSystem {
         VelocityComponent velocityComponent = vm.get(entity);
 
 
-        if (controlComponent.isLeft()) {
-            entity.add(VelocityComponent.create(getEngine()).setSpeed(-64, 0));
-            //transformComponent.setPosition(transformComponent.position.x - 8 * deltaTime, transformComponent.position.y);
-        }
+        //if (controlComponent.isLeft()) {
+        //    entity.add(VelocityComponent.create(getEngine()).setSpeed(-64, 0));
+        //transformComponent.setPosition(transformComponent.position.x - 8 * deltaTime, transformComponent.position.y);
+        //}
         if (controlComponent.isRight()) {
             entity.add(VelocityComponent.create(getEngine()).setSpeed(256, 0));
             //transformComponent.setPosition(transformComponent.position.x + 8 * deltaTime, transformComponent.position.y);
@@ -48,14 +47,21 @@ public class ControlSystem extends IteratingSystem {
 
         if (controlComponent.isJump() && transformComponent.position.y <= -HEIGHT / 2f) {
             //entity.add(VelocityComponent.create(getEngine()).setSpeed(64, 128));
+
+
             Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.POSITION_Y, 0.5f)
                     .ease(TweenEquations.easeInOutSine)
                     .targetRelative(150)
-                    .repeatYoyo(1,0);
+                    .repeatYoyo(1, 0);
             entity.add(TweenComponent.create(getEngine())
                     .addTween(tweenPos));
             controlComponent.setJump(false);
 
+        }
+
+        if (controlComponent.isAttack()) {
+            getEngine().addEntity(BulletFactory.create(getEngine(), transformComponent.position.x, transformComponent.position.y));
+            controlComponent.setAttack(false);
         }
 
         if (velocityComponent != null && controlComponent.isJump() && transformComponent.position.y > (-HEIGHT / 2f) + 100) {

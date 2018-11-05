@@ -29,10 +29,7 @@ import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import se.snrn.gameoffjam.components.ControlComponent;
-import se.snrn.gameoffjam.systems.CameraSystem;
-import se.snrn.gameoffjam.systems.CollisionSystem;
-import se.snrn.gameoffjam.systems.ControlSystem;
-import se.snrn.gameoffjam.systems.UISystem;
+import se.snrn.gameoffjam.systems.*;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -105,7 +102,7 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new ScreenWrapSystem(new Vector2(0,0),new Vector2(WIDTH,HEIGHT),PPM));
         engine.addSystem(new TweenSystem());
-
+        engine.addSystem(new TimedSystem());
         engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
