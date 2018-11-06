@@ -28,15 +28,15 @@ public class CollisionSystem extends IteratingSystem {
         for (Entity otherEntity : getEntities()) {
             if (boundsComponent != bm.get(otherEntity) && boundsComponent.bounds.overlaps(bm.get(otherEntity).bounds)) {
                 Type entityType = typeComponent.getType();
-                Type otherType = tm.get(entity).getType();
+                Type otherType = tm.get(otherEntity).getType();
 
-                System.out.println(entityType);
-                System.out.println(otherType);
-                if(entityType == Type.BULLET && otherType != Type.PLAYER){
-                    getEngine().removeEntity(entity);
-                }
-                if(entityType == Type.ENEMY){
-                    getEngine().removeEntity(entity);
+                System.out.println(entityType+" "+otherType);
+                if(entityType != otherType) {
+                    if (entityType == Type.BULLET && otherType != Type.PLAYER) {
+                        getEngine().removeEntity(entity);
+                    } else if (entityType == Type.ENEMY && otherType != Type.PLAYER) {
+                        getEngine().removeEntity(entity);
+                    }
                 }
             }
         }
