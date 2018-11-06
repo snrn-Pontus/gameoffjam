@@ -13,6 +13,7 @@ import com.roaringcatgames.kitten2d.ashley.components.*;
 import se.snrn.gameoffjam.components.CameraComponent;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
+import se.snrn.gameoffjam.components.TypeComponent;
 
 public class PlayerFactory {
 
@@ -43,6 +44,7 @@ public class PlayerFactory {
                 .add(TransformComponent.create(engine).setPosition(x, y).setScale(32, 32))
                 .add(CameraComponent.create(engine))
                 .add(PlayerComponent.create(engine))
+                .add(TypeComponent.create(engine).setType(Type.PLAYER))
                 .add(ScreenWrapComponent.create(engine).setMode(ScreenWrapMode.HORIZONTAL).setMinMaxPos(0,1280/32f))
                 //.add(BodyComponent.create(engine).setBody(body))
                 .add(BoundsComponent.create(engine).setBounds(-32, -32, 64, 64))

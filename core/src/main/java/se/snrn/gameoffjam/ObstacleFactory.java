@@ -13,6 +13,7 @@ import com.roaringcatgames.kitten2d.ashley.components.*;
 import se.snrn.gameoffjam.components.CameraComponent;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
+import se.snrn.gameoffjam.components.TypeComponent;
 
 public class ObstacleFactory {
 
@@ -41,6 +42,7 @@ public class ObstacleFactory {
         player
                 .add(TransformComponent.create(engine).setPosition(x, y).setScale(32, 32))
                 //.add(BodyComponent.create(engine).setBody(body))
+                .add(TypeComponent.create(engine).setType(Type.ENEMY))
                 .add(BoundsComponent.create(engine).setBounds(-32, -32, 64, 64))
                 .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))));
 
