@@ -48,7 +48,7 @@ public class GameOffJam extends AbstractApplicationListener {
     private FitViewport viewport;
     private World world;
     private InputManager inputManager;
-    private GUIConsole console;
+    public static GUIConsole console;
 
 
     @Override
@@ -106,6 +106,7 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
+        engine.addSystem(new ParticleSystem());
 
 
         Entity player = PlayerFactory.create(engine, world,0,-HEIGHT/2f);
