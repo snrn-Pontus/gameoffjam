@@ -1,5 +1,6 @@
 package se.snrn.gameoffjam.systems;
 
+import aurelienribon.tweenengine.Tween;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -7,9 +8,8 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
-import com.roaringcatgames.kitten2d.ashley.components.ParticleEmitterComponent;
-import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
+import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
+import com.roaringcatgames.kitten2d.ashley.components.*;
 import com.strongjoshua.console.LogLevel;
 import se.snrn.gameoffjam.Type;
 import se.snrn.gameoffjam.components.TypeComponent;
@@ -44,20 +44,25 @@ public class CollisionSystem extends IteratingSystem {
                     case BULLET:
                         switch (otherType) {
                             case ENEMY:
-//                                getEngine().removeEntity(otherEntity);
                                 getEngine().removeEntity(entity);
-                                otherEntity.add(
-                                        ParticleEmitterComponent.create(getEngine())
-                                                .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("test.png"))))
-                                                .setDuration(0.2f)
-                                                .setParticleLifespans(0.1f, 0.5f)
-                                                .setAngleRange(0, 360)
-                                                .setSpawnRate(10)
-                                                .setSpeed(100, 100)
-                                                .setShouldFade(true)
-                                                .setSpawnRange(1, 1)
-                                );
-                                otherEntity.remove(TextureComponent.class);
+                                otherEntity
+                                        .add(
+                                                ParticleEmitterComponent.create(getEngine())
+                                                        .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("test.png"))))
+                                                        .setDuration(0.2f)
+                                                        .setParticleLifespans(0.1f, 0.5f)
+                                                        .setAngleRange(0, 360)
+                                                        .setSpawnRate(10)
+                                                        .setSpeed(300, 300)
+                                                        .setShouldFade(true)
+                                                        .setSpawnRange(64, 64)
+                                                .setSpawnType(ParticleSpawnType.RANDOM_IN_BOUNDS)
+                                        )
+                                        .add(TweenComponent.create(getEngine())
+                                                .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.ROTATION, 0.5f)
+                                                        .target(100)
+                                                ));
+                                //otherEntity.remove(TextureComponent.class);
                                 otherEntity.remove(BoundsComponent.class);
                                 console.log(entityType + " hit " + otherType, LogLevel.DEFAULT);
                                 break;
@@ -74,6 +79,7 @@ public class CollisionSystem extends IteratingSystem {
                         }
                         break;
                 }
+                break;
             }
         }
     }
