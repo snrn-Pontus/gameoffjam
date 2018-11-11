@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -19,11 +18,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.github.czyzby.kiwi.util.gdx.AbstractApplicationListener;
 import com.github.czyzby.kiwi.util.gdx.asset.Disposables;
-import com.github.czyzby.lml.annotation.LmlActor;
 import com.github.czyzby.lml.parser.LmlParser;
 import com.github.czyzby.lml.parser.action.ActorConsumer;
 import com.github.czyzby.lml.util.Lml;
-import com.kotcrab.vis.ui.widget.VisLabel;
 import com.roaringcatgames.kitten2d.ashley.systems.*;
 import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.Console;
@@ -39,7 +36,11 @@ public class GameOffJam extends AbstractApplicationListener {
      * Default application size.
      */
     public static final int WIDTH = 1280, HEIGHT = 720;
+    public static final int SEGMENT_WIDTH = 1280 * 2;
     public static final int PPM = 32;
+    public static final int PIXELS_PER_METER = 32;
+    public static final int SPEED = 256;
+
     private Stage stage;
     private Skin skin;
     private PooledEngine engine;
@@ -74,7 +75,6 @@ public class GameOffJam extends AbstractApplicationListener {
                 }).build();
 
 
-
         // Parsing actors defined in main.lml template and adding them to stage:
         parser.fillStage(stage, Gdx.files.internal("ui/templates/main.lml"));
         // Note: there are less verbose and more powerful ways of using LML. See other LML project templates.
@@ -94,33 +94,32 @@ public class GameOffJam extends AbstractApplicationListener {
 
         engine.addSystem(new Box2DPhysicsSystem(world));
         engine.addSystem(new ControlSystem());
-        engine.addSystem(new RenderingSystem(batch, camera, 32));
+        engine.addSystem(new RenderingSystem(batch, camera, PIXELS_PER_METER));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new Box2DPhysicsDebugSystem(world, camera));
         engine.addSystem(new DebugSystem(camera, Input.Keys.TAB));
         engine.addSystem(new MovementSystem());
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new ScreenWrapSystem(new Vector2(0,0),new Vector2(WIDTH,HEIGHT),PPM));
         engine.addSystem(new TweenSystem());
         engine.addSystem(new TimedSystem());
         engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new ParticleSystem());
+        engine.addSystem(new MapSegmentSystem(camera));
+        engine.addSystem(new CleanUpSystem(camera));
 
 
-        Entity player = PlayerFactory.create(engine, world,0,-HEIGHT/2f);
+        Entity player = PlayerFactory.create(engine, 0, -HEIGHT / 2f);
         engine.addEntity(player);
 
 
-        engine.addEntity(ObstacleFactory.create(engine,world,200,-HEIGHT/2f));
-        engine.addEntity(ObstacleFactory.create(engine,world,600,-HEIGHT/2f));
 
-        //Entity player2 = PlayerFactory.create(engine, world,250,0);
-        //engine.addEntity(player2);
+        Entity floor = FloorFactory.create(engine, 0, (-HEIGHT / 2f) - 48);
+        Entity floor2 = FloorFactory.create(engine, SEGMENT_WIDTH, (-HEIGHT / 2f) - 48);
 
-
-        FloorFactory.create(engine, world, 0, (-HEIGHT / 2f)-64);
+        engine.addEntity(floor);
+        engine.addEntity(floor2);
 
         inputManager = new InputManager(player.getComponent(ControlComponent.class));
 

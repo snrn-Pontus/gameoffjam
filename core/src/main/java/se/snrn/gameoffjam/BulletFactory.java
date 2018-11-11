@@ -13,14 +13,17 @@ import static se.snrn.gameoffjam.GameOffJam.PPM;
 
 public class BulletFactory {
     public static Entity create(Engine engine, float x, float y) {
+
+
+
         Entity bullet = engine.createEntity();
         bullet
                 .add(VelocityComponent.create(engine).setSpeed(512, 0))
                 .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))))
-                .add(BoundsComponent.create(engine).setBounds(x, y, 64, 8))
-                .add(TimedComponent.create(engine).setLifespan(3f))
+                .add(BoundsComponent.create(engine).setBounds(x+48, y, 32, 8))
+                .add(TimedComponent.create(engine).setLifespan(3.5f))
                 .add(TypeComponent.create(engine).setType(Type.BULLET))
-                .add(TransformComponent.create(engine).setPosition(x, y).setScale(PPM,8));
+                .add(TransformComponent.create(engine).setPosition(x+48, y).setScale(PPM,8));
         return bullet;
     }
 }

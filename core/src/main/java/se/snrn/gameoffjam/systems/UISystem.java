@@ -8,8 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
 
+import java.text.DecimalFormat;
+
 public class UISystem extends IteratingSystem {
 
+    private final DecimalFormat formatter;
     private ComponentMapper<TransformComponent> tm;
     private Label distance;
 
@@ -17,7 +20,8 @@ public class UISystem extends IteratingSystem {
         super(Family.all(TransformComponent.class, PlayerComponent.class).get());
         this.distance = distance;
         tm = ComponentMapper.getFor(TransformComponent.class);
-        System.out.println(distance);
+         formatter = new DecimalFormat("#0.00");
+
     }
 
     @Override
@@ -27,7 +31,7 @@ public class UISystem extends IteratingSystem {
 
 
         if (distance != null) {
-            distance.setText(transformComponent.position.x / 10f + "");
+            distance.setText(formatter.format(transformComponent.position.x / 10f) + "");
         }
 
     }

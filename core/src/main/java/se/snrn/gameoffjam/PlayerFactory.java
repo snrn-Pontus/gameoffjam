@@ -5,50 +5,33 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
-import com.roaringcatgames.kitten2d.ashley.components.*;
+import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
+import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
+import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
+import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
 import se.snrn.gameoffjam.components.CameraComponent;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
 import se.snrn.gameoffjam.components.TypeComponent;
 
+import static se.snrn.gameoffjam.GameOffJam.PIXELS_PER_METER;
+import static se.snrn.gameoffjam.GameOffJam.SPEED;
+
 public class PlayerFactory {
 
-    public static Entity create(Engine engine, World world, float x, float y) {
+    public static Entity create(Engine engine, float x, float y) {
         Entity player = engine.createEntity();
-
-        BodyDef bodyDef = new BodyDef();
-
-        bodyDef.position.set(x, y);
-
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-
-        FixtureDef fixtureDef = new FixtureDef();
-
-        PolygonShape polygonShape = new PolygonShape();
-
-        polygonShape.setAsBox(32, 32);
-
-        fixtureDef.shape = polygonShape;
-
-        //Body body = world.createBody(bodyDef);
-
-        //body.createFixture(fixtureDef);
 
 
         player
                 .add(ControlComponent.create(engine))
-                .add(TransformComponent.create(engine).setPosition(x, y).setScale(32, 32))
-                .add(CameraComponent.create(engine))
+                .add(TransformComponent.create(engine).setPosition(x, y).setScale(PIXELS_PER_METER, PIXELS_PER_METER))
+                .add(CameraComponent.create(engine).setOffset(-64))
                 .add(PlayerComponent.create(engine))
+                .add(VelocityComponent.create(engine).setSpeed(SPEED, 0))
                 .add(TypeComponent.create(engine).setType(Type.PLAYER))
-                .add(ScreenWrapComponent.create(engine).setMode(ScreenWrapMode.HORIZONTAL).setMinMaxPos(0,1280/32f))
-                //.add(BodyComponent.create(engine).setBody(body))
-                .add(BoundsComponent.create(engine).setBounds(-32, -32, 64, 64))
-                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("test.png")))));
+                .add(BoundsComponent.create(engine).setBounds(-PIXELS_PER_METER, -PIXELS_PER_METER, 32, 32))
+                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("ship.png")))));
 
         return player;
     }

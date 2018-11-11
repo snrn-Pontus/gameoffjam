@@ -10,6 +10,8 @@ public class InputManager extends InputAdapter {
     private final int right = Input.Keys.RIGHT;
     private final int attack = Input.Keys.CONTROL_LEFT;
     private final int jump = Input.Keys.SPACE;
+    private final int up = Input.Keys.UP;
+    private final int down = Input.Keys.DOWN;
     private ControlComponent controlComponent;
 
     public InputManager(ControlComponent controlComponent) {
@@ -33,6 +35,12 @@ public class InputManager extends InputAdapter {
         if (keycode == jump) {
             controlComponent.setJump(true);
         }
+        if (keycode == up) {
+            controlComponent.setUp(true);
+        }
+        if (keycode == down) {
+            controlComponent.setDown(true);
+        }
         return false;
 
     }
@@ -48,9 +56,12 @@ public class InputManager extends InputAdapter {
         if (keycode == attack) {
             controlComponent.setAttack(false);
         }
-        //if (keycode == jump) {
-        //    controlComponent.setJump(false);
-        //}
+        if (keycode == up) {
+            controlComponent.setUp(false);
+        }
+        if (keycode == down) {
+            controlComponent.setDown(false);
+        }
         return false;
     }
 }

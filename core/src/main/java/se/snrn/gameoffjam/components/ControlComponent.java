@@ -11,6 +11,8 @@ public class ControlComponent implements Component, Pool.Poolable {
     private boolean right;
     private boolean attack;
     private boolean jump;
+    private boolean up;
+    private boolean down;
 
     public static ControlComponent create(Engine engine) {
         if (engine instanceof PooledEngine) {
@@ -52,11 +54,29 @@ public class ControlComponent implements Component, Pool.Poolable {
         this.jump = jump;
     }
 
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
     @Override
     public void reset() {
         left = false;
         right = false;
         attack = false;
         jump = false;
+        up = false;
+        down = false;
     }
 }
