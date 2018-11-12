@@ -25,9 +25,9 @@ public class FloorFactory {
         Random random = new Random();
 
 
-        engine.addEntity(ObstacleFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
-        engine.addEntity(ObstacleFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
-        engine.addEntity(ObstacleFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
+        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
+        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
+        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
 
         return e;
 

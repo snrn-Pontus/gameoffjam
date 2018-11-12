@@ -82,6 +82,7 @@ public class CollisionSystem extends IteratingSystem {
                                                         }))
                                         );
                                 otherEntity.remove(BoundsComponent.class);
+                                getEngine().removeEntity(entity);
                                 console.log(entityType + " hit " + otherType, LogLevel.DEFAULT);
                                 break;
                         }

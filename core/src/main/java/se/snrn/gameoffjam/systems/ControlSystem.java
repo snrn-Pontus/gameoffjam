@@ -65,27 +65,32 @@ public class ControlSystem extends IteratingSystem {
 
         if (controlComponent.isUp()) {
             velocityComponent.setSpeed(velocityComponent.speed.x, SPEED);
+            Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.ROTATION, 0.5f)
+                    .ease(TweenEquations.easeOutCubic)
+                    .target(MAX_TILT);
+            entity.add(TweenComponent.create(getEngine())
+                    .addTween(tweenPos));
         }
         if (controlComponent.isDown()) {
             velocityComponent.setSpeed(velocityComponent.speed.x, -SPEED);
+            Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.ROTATION, 0.5f)
+                    .ease(TweenEquations.easeOutCubic)
+                    .target(-MAX_TILT);
+            entity.add(TweenComponent.create(getEngine())
+                    .addTween(tweenPos));
         }
 
         if (!controlComponent.isDown() && !controlComponent.isUp()) {
             velocityComponent.setSpeed(velocityComponent.speed.x, 0);
-        }
-        if (controlComponent.isJump() && transformComponent.position.y <= -HEIGHT / 2f) {
-            Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.POSITION_Y, 0.5f)
+            Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.ROTATION, 0.5f)
                     .ease(TweenEquations.easeOutCubic)
-                    .targetRelative(150)
-                    .repeatYoyo(1, 0);
+                    .target(0);
             entity.add(TweenComponent.create(getEngine())
                     .addTween(tweenPos));
-            controlComponent.setJump(false);
-
         }
 
         if (controlComponent.isAttack()) {
-            getEngine().addEntity(BulletFactory.create(getEngine(), transformComponent.position.x, transformComponent.position.y));
+            getEngine().addEntity(BulletFactory.create(getEngine(), transformComponent));
             controlComponent.setAttack(false);
         }
     }

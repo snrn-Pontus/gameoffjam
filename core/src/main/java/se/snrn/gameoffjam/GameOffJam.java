@@ -26,6 +26,7 @@ import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import se.snrn.gameoffjam.components.ControlComponent;
+import se.snrn.gameoffjam.systems.AnimationSystem;
 import se.snrn.gameoffjam.systems.*;
 
 /**
@@ -40,6 +41,7 @@ public class GameOffJam extends AbstractApplicationListener {
     public static final int PPM = 32;
     public static final int PIXELS_PER_METER = 32;
     public static final int SPEED = 256;
+    public static final int MAX_TILT = 20;
 
     private Stage stage;
     private Skin skin;
@@ -108,11 +110,11 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new ParticleSystem());
         engine.addSystem(new MapSegmentSystem(camera));
         engine.addSystem(new CleanUpSystem(camera));
+        engine.addSystem(new AnimationSystem());
 
 
         Entity player = PlayerFactory.create(engine, 0, -HEIGHT / 2f);
         engine.addEntity(player);
-
 
 
         Entity floor = FloorFactory.create(engine, 0, (-HEIGHT / 2f) - 48);

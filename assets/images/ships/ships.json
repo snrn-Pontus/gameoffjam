@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Red",
+    "sprite": "ship0.png",
+    "bullets": "bullet0.png",
+    "creator": "Pontus",
+    "id": 0
+  },
+  {
+    "name": "Blue",
+    "sprite": "ship1.png",
+    "bullets": "bullet0.png",
+    "creator": "Pontus",
+    "id": 1,
+    "lights": {
+      "coneLight": "FBF236FF",
+      "pointLight": "FBF236FF",
+      "bulletLight": "FBF236FF"
+    },
+    "exhaust": {
+      "color": "AC3232",
+      "x": 0,
+      "y": -16
+    }
+  },
+  {
+    "name": "Cosmic Cup",
+    "sprite": "ship2.png",
+    "bullets": "bullet0.png",
+    "creator": "K2",
+    "id": 2
+  },
+  {
+    "name": "Mupp",
+    "sprite": "ship3.png",
+    "bullets": "bullet0.png",
+    "creator": "Pontus",
+    "id": 3
+  },
+  {
+    "name": "JetFighter",
+    "sprite": "ship4.png",
+    "bullets": "bullet0.png",
+    "creator": "Teo",
+    "id": 4
+  },
+  {
+    "name": "UFO",
+    "sprite": "ship5.png",
+    "bullets": "bullet0.png",
+    "creator": "Pontus",
+    "id": 5,
+    "animations": {
+      "normal": "normal",
+      "acceleration": "acceleration",
+      "shoot": "shoot"
+    },
+    "lights": {
+      "coneLight": "FFFFFFFF",
+      "pointLight": "FFFFFFFF",
+      "bulletLight": "FFFFFFFF"
+    },
+    "exhaust": {
+      "color": "AC3232",
+      "particle":"bullet",
+      "x": 0,
+      "y": -16
+    },
+    "canons": [
+      {
+        "x": -8,
+        "y": 8
+      },
+      {
+        "x": 8,
+        "y": 8
+      }
+    ]
+  }
+]

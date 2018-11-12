@@ -5,10 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
-import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
-import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
-import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
+import com.roaringcatgames.kitten2d.ashley.components.*;
 import se.snrn.gameoffjam.components.CameraComponent;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
@@ -28,6 +25,16 @@ public class PlayerFactory {
                 .add(TransformComponent.create(engine).setPosition(x, y).setScale(PIXELS_PER_METER, PIXELS_PER_METER))
                 .add(CameraComponent.create(engine).setOffset(-64))
                 .add(PlayerComponent.create(engine))
+                .add(ParticleEmitterComponent.create(engine)
+                        .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("test.png"))))
+                        .setDuration(10f)
+                        .setParticleMinMaxScale(0.75f,1.25f)
+                        .setShouldLoop(true)
+                        .setParticleLifespans(0.1f, 0.5f)
+                        .setAngleRange(80, 100)
+                        .setSpawnRate(30)
+                        .setSpeed(30, 100)
+                        .setShouldFade(true))
                 .add(VelocityComponent.create(engine).setSpeed(SPEED, 0))
                 .add(TypeComponent.create(engine).setType(Type.PLAYER))
                 .add(BoundsComponent.create(engine).setBounds(-PIXELS_PER_METER, -PIXELS_PER_METER, 32, 32))
