@@ -3,6 +3,7 @@ package se.snrn.gameoffjam.systems;
 import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
+import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -11,14 +12,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
-import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
-import com.roaringcatgames.kitten2d.ashley.components.ParticleEmitterComponent;
-import com.roaringcatgames.kitten2d.ashley.components.ParticleSpawnType;
-import com.roaringcatgames.kitten2d.ashley.components.TweenComponent;
+import com.roaringcatgames.kitten2d.ashley.components.*;
 import com.strongjoshua.console.LogLevel;
+import se.snrn.gameoffjam.CollectibleFactory;
 import se.snrn.gameoffjam.Type;
+import se.snrn.gameoffjam.components.PlayerComponent;
+import se.snrn.gameoffjam.components.TimedComponent;
 import se.snrn.gameoffjam.components.TypeComponent;
 
+import static se.snrn.gameoffjam.GameOffJam.PPM;
 import static se.snrn.gameoffjam.GameOffJam.console;
 
 public class CollisionSystem extends IteratingSystem {
@@ -33,13 +35,13 @@ public class CollisionSystem extends IteratingSystem {
     }
 
     @Override
-    protected void processEntity(Entity entity, float deltaTime) {
+    protected void processEntity(final Entity entity, float deltaTime) {
 
         BoundsComponent boundsComponent = bm.get(entity);
         TypeComponent typeComponent = tm.get(entity);
 
         for (final Entity otherEntity : getEntities()) {
-            BoundsComponent otherBounds = bm.get(otherEntity);
+            final BoundsComponent otherBounds = bm.get(otherEntity);
 
             if (otherBounds != null &&
                     boundsComponent != null &&
@@ -50,6 +52,33 @@ public class CollisionSystem extends IteratingSystem {
 
                 switch (entityType) {
                     case PLAYER:
+                        switch (otherType) {
+                            case COLLECTIBLE:
+                                System.out.println("hit");
+                                otherEntity
+                                        .add(
+                                                FollowerComponent.create(getEngine())
+                                                        .setTarget(entity)
+                                                        .setMode(FollowMode.MOVETOSTICKY)
+                                                        .setFollowSpeed(250)
+                                        )
+                                        .add(TweenComponent.create(getEngine())
+                                                .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.SCALE, 0.25f)
+                                                        .target(PPM * 2, PPM * 2)
+                                                        .repeatYoyo(1, 0)
+                                                        .ease(TweenEquations.easeInOutCirc)
+                                                        .setCallback(new TweenCallback() {
+                                                            @Override
+                                                            public void onEvent(int type, BaseTween<?> source) {
+                                                                if (type == COMPLETE) {
+                                                                    entity.getComponent(PlayerComponent.class).addScore(100);
+                                                                }
+                                                            }
+                                                        })))
+                                        .add(TimedComponent.create(getEngine()).setLifespan(2));
+                                otherEntity.remove(BoundsComponent.class);
+                                break;
+                        }
                         break;
                     case BULLET:
                         switch (otherType) {
@@ -75,6 +104,7 @@ public class CollisionSystem extends IteratingSystem {
                                                             @Override
                                                             public void onEvent(int type, BaseTween<?> source) {
                                                                 if (type == COMPLETE) {
+                                                                    getEngine().addEntity(CollectibleFactory.create(getEngine(), otherEntity.getComponent(TransformComponent.class).position.x, otherEntity.getComponent(TransformComponent.class).position.y));
                                                                     getEngine().removeEntity(otherEntity);
                                                                 }
 

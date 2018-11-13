@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Pool;
 public class PlayerComponent implements Component, Pool.Poolable {
 
 
+    private int score;
 
     public static PlayerComponent create(Engine engine) {
         if (engine instanceof PooledEngine) {
@@ -20,6 +21,18 @@ public class PlayerComponent implements Component, Pool.Poolable {
 
     @Override
     public void reset() {
+        score = 0;
+    }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
     }
 }

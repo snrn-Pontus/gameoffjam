@@ -13,14 +13,18 @@ import java.text.DecimalFormat;
 public class UISystem extends IteratingSystem {
 
     private final DecimalFormat formatter;
+    private final ComponentMapper<PlayerComponent> pm;
     private ComponentMapper<TransformComponent> tm;
     private Label distance;
+    private Label score;
 
-    public UISystem(Label distance) {
+    public UISystem(Label distance,Label score) {
         super(Family.all(TransformComponent.class, PlayerComponent.class).get());
         this.distance = distance;
+        this.score = score;
         tm = ComponentMapper.getFor(TransformComponent.class);
-         formatter = new DecimalFormat("#0.00");
+        pm = ComponentMapper.getFor(PlayerComponent.class);
+        formatter = new DecimalFormat("#0.00");
 
     }
 
@@ -28,7 +32,9 @@ public class UISystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
 
         TransformComponent transformComponent = tm.get(entity);
+        PlayerComponent playerComponent = pm.get(entity);
 
+        score.setText(playerComponent.getScore()+"");
 
         if (distance != null) {
             distance.setText(formatter.format(transformComponent.position.x / 10f) + "");

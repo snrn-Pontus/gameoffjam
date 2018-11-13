@@ -1,6 +1,7 @@
 package se.snrn.gameoffjam;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -26,6 +27,7 @@ import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import se.snrn.gameoffjam.components.ControlComponent;
+import se.snrn.gameoffjam.components.PlayerComponent;
 import se.snrn.gameoffjam.systems.AnimationSystem;
 import se.snrn.gameoffjam.systems.*;
 
@@ -104,13 +106,17 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new TweenSystem());
         engine.addSystem(new TimedSystem());
-        engine.addSystem(new UISystem((Label) parser.getActorsMappedByIds().get("distance")));
+        engine.addSystem(new UISystem(
+                (Label) parser.getActorsMappedByIds().get("distance"),
+                (Label) parser.getActorsMappedByIds().get("score"))
+        );
         //engine.addSystem(new GravitySystem(new Vector2(0f,-9.8f)));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new ParticleSystem());
         engine.addSystem(new MapSegmentSystem(camera));
         engine.addSystem(new CleanUpSystem(camera));
         engine.addSystem(new AnimationSystem());
+        engine.addSystem(new FollowerSystem(Family.all(PlayerComponent.class).get()));
 
 
         Entity player = PlayerFactory.create(engine, 0, -HEIGHT / 2f);
