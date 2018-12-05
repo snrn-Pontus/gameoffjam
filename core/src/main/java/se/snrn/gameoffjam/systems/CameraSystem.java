@@ -35,6 +35,6 @@ public class CameraSystem extends IteratingSystem {
         camera.update(true);
 
 
-        camera.position.set(transformComponent.position.x+((WIDTH/2f)+cameraComponent.getOffset()),-64,0);
+        //camera.position.set(transformComponent.position.x+((WIDTH/2f)+cameraComponent.getOffset()),-64,0);
     }
 }

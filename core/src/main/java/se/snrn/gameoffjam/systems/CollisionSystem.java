@@ -64,7 +64,7 @@ public class CollisionSystem extends IteratingSystem {
                                         )
                                         .add(TweenComponent.create(getEngine())
                                                 .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.SCALE, 0.25f)
-                                                        .target(PPM * 2, PPM * 2)
+                                                        .target(8,8)
                                                         .repeatYoyo(1, 0)
                                                         .ease(TweenEquations.easeInOutCirc)
                                                         .setCallback(new TweenCallback() {

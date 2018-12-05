@@ -15,6 +15,6 @@ dependencies {
   compile "com.github.czyzby:gdx-kiwi:$kiwiVersion"
   compile "com.strongjoshua:libgdx-inGameConsole:$inGameConsoleVersion"
   compile "com.github.czyzby:gdx-lml-vis:$lmlVisVersion"
+  compile group: 'com.esotericsoftware.spine', name: 'spine-libgdx', version: '3.6.34.0'
   compile group: 'com.roaringcatgames.kitten2d.ashley', name: 'ashley-extensions', version: '0.5.7'
 }
-        

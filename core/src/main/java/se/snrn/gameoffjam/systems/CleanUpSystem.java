@@ -7,8 +7,11 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
+import com.strongjoshua.console.LogLevel;
 import se.snrn.gameoffjam.components.CleanUpComponent;
 import se.snrn.gameoffjam.components.MapSegmentComponent;
+
+import static se.snrn.gameoffjam.GameOffJam.console;
 
 public class CleanUpSystem extends IteratingSystem {
 
@@ -32,7 +35,8 @@ public class CleanUpSystem extends IteratingSystem {
         if(transformComponent.position.x < camera.position.x && !camera.frustum.boundsInFrustum(transformComponent.position.x,transformComponent.position.y,transformComponent.position.z,
                 boundsComponent.bounds.width/2,boundsComponent.bounds.height/2,1)){
             getEngine().removeEntity(entity);
-            System.out.println("removed");
+            console.log("entity removed", LogLevel.SUCCESS);
+
         }
 
     }

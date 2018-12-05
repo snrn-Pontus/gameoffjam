@@ -1,0 +1,27 @@
+
+heli.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lager_2
+  rotate: true
+  xy: 2, 57
+  size: 65, 222
+  orig: 65, 222
+  offset: 0, 0
+  index: -1
+Lager_7
+  rotate: true
+  xy: 226, 2
+  size: 120, 28
+  orig: 120, 28
+  offset: 0, 0
+  index: -1
+Lager_8
+  rotate: false
+  xy: 2, 26
+  size: 120, 29
+  orig: 120, 29
+  offset: 0, 0
+  index: -1

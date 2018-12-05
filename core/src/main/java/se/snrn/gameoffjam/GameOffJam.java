@@ -38,11 +38,13 @@ public class GameOffJam extends AbstractApplicationListener {
     /**
      * Default application size.
      */
-    public static final int WIDTH = 1280, HEIGHT = 720;
+    public static final int WIDTH = 1280, HEIGHT = 720, WORLD_WIDTH = 320, WORLD_HEIGHT = 180;
     public static final int SEGMENT_WIDTH = 1280 * 2;
     public static final int PPM = 32;
     public static final int PIXELS_PER_METER = 32;
-    public static final int SPEED = 256;
+    public static final int BULLET_SPEED = 512;
+    public static final int SPEED = 0;
+    public static final int BACKGROUND_SPEED = 256;
     public static final int MAX_TILT = 20;
 
     private Stage stage;
@@ -59,6 +61,7 @@ public class GameOffJam extends AbstractApplicationListener {
     @Override
     public void create() {
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
+
         skin = new Skin(Gdx.files.internal("ui/skin.json"));
 
         LmlParser parser = Lml.parser(skin)
@@ -117,11 +120,15 @@ public class GameOffJam extends AbstractApplicationListener {
         engine.addSystem(new CleanUpSystem(camera));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new FollowerSystem(Family.all(PlayerComponent.class).get()));
+        engine.addSystem(new SpineSystem(batch, camera));
 
+        engine.addSystem(new MultiBoundsSystem());
 
         Entity player = PlayerFactory.create(engine, 0, -HEIGHT / 2f);
         engine.addEntity(player);
 
+
+        camera.position.set(WIDTH / 2f - 64, -64, 0);
 
         Entity floor = FloorFactory.create(engine, 0, (-HEIGHT / 2f) - 48);
         Entity floor2 = FloorFactory.create(engine, SEGMENT_WIDTH, (-HEIGHT / 2f) - 48);
@@ -156,6 +163,7 @@ public class GameOffJam extends AbstractApplicationListener {
     @Override
     public void render(float deltaTime) {
         // AbstractApplicationListener automatically clears the screen with black color.
+
         engine.update(deltaTime);
         stage.act(deltaTime);
         stage.draw();

@@ -18,11 +18,11 @@ public class CollectibleFactory {
 
 
         collectible
-                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("images/bullet.png")))))
-                .add(TransformComponent.create(engine).setPosition(x, y).setScale(PPM, PPM))
+                .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("images/carrot.png")))))
+                .add(TransformComponent.create(engine).setPosition(x, y).setScale(4, 4))
                 .add(TypeComponent.create(engine).setType(Type.COLLECTIBLE))
                 .add(CleanUpComponent.create(engine))
-                .add(BoundsComponent.create(engine).setBounds(x, y, 64,64));
+                .add(BoundsComponent.create(engine).setBounds(x, y, 32,64));
         System.out.println("create");
         return collectible;
     }
