@@ -13,9 +13,10 @@ import se.snrn.gameoffjam.components.CleanUpComponent;
 import java.util.Random;
 
 import static se.snrn.gameoffjam.GameOffJam.*;
+import static se.snrn.gameoffjam.ScreenManager.*;
 
 public class BackgroundFactory {
-    public static Entity create(Engine engine, float x, float y, float speedModifier, Texture texture) {
+    public static Entity create(Engine engine, float x, float y, float speedModifier, float z,Texture texture) {
 
         Random random = new Random();
 
@@ -24,7 +25,7 @@ public class BackgroundFactory {
         float width = texture.getWidth();
 
         Entity background = engine.createEntity();
-        background.add(TransformComponent.create(engine).setPosition(x + random.nextFloat() * SEGMENT_WIDTH, y + 32).setScale(PIXELS_PER_METER, PIXELS_PER_METER));
+        background.add(TransformComponent.create(engine).setPosition(x + random.nextFloat() * SEGMENT_WIDTH, y + 32,z).setScale(PPM, PPM));
         background.add(TextureComponent.create(engine).setRegion(new TextureRegion(texture)));
         background.add(BoundsComponent.create(engine).setBounds(-32, -32, width, height));
         background.add(VelocityComponent.create(engine).setSpeed(-BACKGROUND_SPEED * speedModifier, 0));

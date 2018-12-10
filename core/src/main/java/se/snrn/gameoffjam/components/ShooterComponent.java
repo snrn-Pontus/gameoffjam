@@ -33,6 +33,7 @@ public class ShooterComponent implements Component, Pool.Poolable {
     @Override
     public void reset() {
         this.attachment = null;
+        this.bone = null;
     }
 
     public Bone getBone() {

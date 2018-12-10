@@ -9,7 +9,8 @@ import com.roaringcatgames.kitten2d.ashley.components.*;
 import se.snrn.gameoffjam.components.CleanUpComponent;
 import se.snrn.gameoffjam.components.TypeComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.PPM;
+import static se.snrn.gameoffjam.ScreenManager.BACKGROUND_SPEED;
+
 
 public class CollectibleFactory {
 
@@ -19,8 +20,9 @@ public class CollectibleFactory {
 
         collectible
                 .add(TextureComponent.create(engine).setRegion(new TextureRegion(new Texture(Gdx.files.internal("images/carrot.png")))))
-                .add(TransformComponent.create(engine).setPosition(x, y).setScale(4, 4))
+                .add(TransformComponent.create(engine).setPosition(x, y,-2).setScale(4, 4))
                 .add(TypeComponent.create(engine).setType(Type.COLLECTIBLE))
+                .add(VelocityComponent.create(engine).setSpeed(-BACKGROUND_SPEED,0))
                 .add(CleanUpComponent.create(engine))
                 .add(BoundsComponent.create(engine).setBounds(x, y, 32,64));
         System.out.println("create");

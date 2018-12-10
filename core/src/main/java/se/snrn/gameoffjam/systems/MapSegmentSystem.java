@@ -8,12 +8,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.strongjoshua.console.LogLevel;
-import se.snrn.gameoffjam.BackgroundFactory;
-import se.snrn.gameoffjam.FloorFactory;
 import se.snrn.gameoffjam.components.MapSegmentComponent;
+import se.snrn.gameoffjam.map.Map;
 
-import static se.snrn.gameoffjam.GameOffJam.SEGMENT_WIDTH;
 import static se.snrn.gameoffjam.GameOffJam.console;
+import static se.snrn.gameoffjam.ScreenManager.SEGMENT_WIDTH;
 
 public class MapSegmentSystem extends IteratingSystem {
 
@@ -38,8 +37,8 @@ public class MapSegmentSystem extends IteratingSystem {
                 boundsComponent.bounds.width / 2, boundsComponent.bounds.height / 2, 1)) {
             getEngine().removeEntity(entity);
             console.log("map segment removed", LogLevel.SUCCESS);
-
-            getEngine().addEntity(FloorFactory.create(getEngine(), transformComponent.position.x + (SEGMENT_WIDTH * 1.5f), transformComponent.position.y));
+            new Map("segment.json",getEngine(), transformComponent.position.x + (SEGMENT_WIDTH * 1.5f), transformComponent.position.y);
+            //getEngine().addEntity(FloorFactory.create(getEngine(), transformComponent.position.x + (SEGMENT_WIDTH * 1.5f), transformComponent.position.y));
         }
 
     }

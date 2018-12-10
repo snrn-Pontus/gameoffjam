@@ -6,7 +6,8 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.utils.Pool;
 import net.dermetfan.gdx.math.MathUtils;
 
-import static se.snrn.gameoffjam.GameOffJam.WIDTH;
+import static se.snrn.gameoffjam.ScreenManager.WIDTH;
+
 
 public class CameraComponent implements Component, Pool.Poolable {
 

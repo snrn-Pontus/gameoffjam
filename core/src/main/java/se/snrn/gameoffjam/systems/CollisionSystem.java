@@ -1,26 +1,21 @@
 package se.snrn.gameoffjam.systems;
 
-import aurelienribon.tweenengine.BaseTween;
-import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenCallback;
-import aurelienribon.tweenengine.TweenEquations;
+import aurelienribon.tweenengine.*;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
 import com.roaringcatgames.kitten2d.ashley.components.*;
 import com.strongjoshua.console.LogLevel;
 import se.snrn.gameoffjam.CollectibleFactory;
 import se.snrn.gameoffjam.Type;
+import se.snrn.gameoffjam.WreckFactory;
+import se.snrn.gameoffjam.components.LightningComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
 import se.snrn.gameoffjam.components.TimedComponent;
 import se.snrn.gameoffjam.components.TypeComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.PPM;
 import static se.snrn.gameoffjam.GameOffJam.console;
 
 public class CollisionSystem extends IteratingSystem {
@@ -64,7 +59,7 @@ public class CollisionSystem extends IteratingSystem {
                                         )
                                         .add(TweenComponent.create(getEngine())
                                                 .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.SCALE, 0.25f)
-                                                        .target(8,8)
+                                                        .target(8, 8)
                                                         .repeatYoyo(1, 0)
                                                         .ease(TweenEquations.easeInOutCirc)
                                                         .setCallback(new TweenCallback() {
@@ -83,36 +78,32 @@ public class CollisionSystem extends IteratingSystem {
                     case BULLET:
                         switch (otherType) {
                             case ENEMY:
+                                otherEntity.add(LightningComponent.create(getEngine()));
+                                getEngine().addEntity(CollectibleFactory.create(getEngine(), otherEntity.getComponent(TransformComponent.class).position.x, otherEntity.getComponent(TransformComponent.class).position.y));
                                 getEngine().removeEntity(entity);
-                                otherEntity
-                                        .add(
-                                                ParticleEmitterComponent.create(getEngine())
-                                                        .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("test.png"))))
-                                                        .setDuration(0.2f)
-                                                        .setParticleLifespans(0.1f, 0.5f)
-                                                        .setAngleRange(0, 360)
-                                                        .setSpawnRate(10)
-                                                        .setSpeed(300, 300)
-                                                        .setShouldFade(true)
-                                        )
-                                        .add(TweenComponent.create(getEngine())
-                                                .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.ROTATION, 0.5f)
-                                                        .target(720)
-                                                )
-                                                .addTween(Tween.to(otherEntity, K2EntityTweenAccessor.SCALE, 0.5f)
-                                                        .target(0.01f).setCallback(new TweenCallback() {
-                                                            @Override
-                                                            public void onEvent(int type, BaseTween<?> source) {
-                                                                if (type == COMPLETE) {
-                                                                    getEngine().addEntity(CollectibleFactory.create(getEngine(), otherEntity.getComponent(TransformComponent.class).position.x, otherEntity.getComponent(TransformComponent.class).position.y));
-                                                                    getEngine().removeEntity(otherEntity);
-                                                                }
-
-                                                            }
-                                                        }))
-                                        );
                                 otherEntity.remove(BoundsComponent.class);
-                                getEngine().removeEntity(entity);
+                                Timeline tl = Timeline.createParallel();
+
+
+                                tl.push(Tween.to(otherEntity, K2EntityTweenAccessor.POSITION_X, 1f)
+                                        .ease(TweenEquations.easeInBack)
+                                        .targetRelative(-100));
+                                tl.push(Tween.to(otherEntity, K2EntityTweenAccessor.ROTATION, 1f)
+                                        .ease(TweenEquations.easeInBack)
+                                        .targetRelative(45));
+                                tl.push(Tween.to(otherEntity, K2EntityTweenAccessor.POSITION_Y, 1f)
+                                        .ease(TweenEquations.easeInBack)
+                                        .target(50)
+                                        .setCallback(new TweenCallback() {
+                                            @Override
+                                            public void onEvent(int type, BaseTween<?> source) {
+                                                if (type == COMPLETE) {
+                                                    WreckFactory.create(getEngine(), otherEntity.getComponent(TransformComponent.class));
+                                                    getEngine().removeEntity(otherEntity);
+                                                }
+                                            }
+                                        }));
+                                otherEntity.add(TweenComponent.create(getEngine()).setTimeline(tl));
                                 console.log(entityType + " hit " + otherType, LogLevel.DEFAULT);
                                 break;
                         }

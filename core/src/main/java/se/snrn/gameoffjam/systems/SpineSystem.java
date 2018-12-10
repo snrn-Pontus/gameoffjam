@@ -4,6 +4,8 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -64,6 +66,7 @@ public class SpineSystem extends IteratingSystem {
     private OrthographicCamera camera;
     SkeletonRendererDebug debugRenderer;
     private SkeletonBounds bounds;
+    private boolean isDebugMode = false;
 
     public SpineSystem(SpriteBatch batch, OrthographicCamera camera) {
         super(Family.all(AnimationStateComponent.class, SkeletonComponent.class).get());
@@ -94,6 +97,10 @@ public class SpineSystem extends IteratingSystem {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+            if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+                isDebugMode = !isDebugMode;
+            }
+
         //  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
@@ -118,11 +125,11 @@ public class SpineSystem extends IteratingSystem {
 
 
             skeletonComponent.getSkeleton().setPosition(transformComponent.position.x, transformComponent.position.y);
-            //skeletonComponent.getSkeleton().getRootBone().setScale(0.3f, 0.3f);
             skeletonComponent.getSkeleton().getRootBone().setRotation(transformComponent.rotation);
             animationStateComponent.getState().update(deltaTime);
             animationStateComponent.getState().apply(skeletonComponent.getSkeleton());
             skeletonComponent.getSkeleton().updateWorldTransform();
+
 
             bounds = new SkeletonBounds();
 
@@ -133,11 +140,9 @@ public class SpineSystem extends IteratingSystem {
 
             batch.end();
 
-            debugRenderer.draw(skeletonComponent.getSkeleton());
-
-            //if (attachmentComponent != null) {
-            //    debugRenderer.draw(attachmentComponent.getSkeleton());
-            //}
+            if (isDebugMode) {
+                debugRenderer.draw(skeletonComponent.getSkeleton());
+            }
         }
 
         renderQueue.clear();

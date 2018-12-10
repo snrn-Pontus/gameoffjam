@@ -6,14 +6,18 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.math.Vector2;
+import com.esotericsoftware.spine.attachments.PointAttachment;
 import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TweenComponent;
 import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
 import se.snrn.gameoffjam.BulletFactory;
 import se.snrn.gameoffjam.components.ControlComponent;
+import se.snrn.gameoffjam.components.ShooterComponent;
 
 import static se.snrn.gameoffjam.GameOffJam.*;
+import static se.snrn.gameoffjam.ScreenManager.*;
 
 public class ControlSystem extends IteratingSystem {
 
@@ -34,6 +38,8 @@ public class ControlSystem extends IteratingSystem {
         ControlComponent controlComponent = cm.get(entity);
         TransformComponent transformComponent = tm.get(entity);
         VelocityComponent velocityComponent = vm.get(entity);
+
+
 
 
         if (controlComponent.isLeft()) {
@@ -58,15 +64,23 @@ public class ControlSystem extends IteratingSystem {
         }
 
         if (controlComponent.isUp()) {
-            velocityComponent.setSpeed(velocityComponent.speed.x, BACKGROUND_SPEED);
+            if(transformComponent.position.y < HEIGHT -90) {
+                velocityComponent.setSpeed(velocityComponent.speed.x, BACKGROUND_SPEED);
+            } else {
+                velocityComponent.setSpeed(velocityComponent.speed.x, SPEED);
+            }
             Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.ROTATION, 0.5f)
-                    .ease(TweenEquations.easeOutCubic)
-                    .target(MAX_TILT);
+                        .ease(TweenEquations.easeOutCubic)
+                        .target(MAX_TILT);
             entity.add(TweenComponent.create(getEngine())
-                    .addTween(tweenPos));
+                        .addTween(tweenPos));
         }
         if (controlComponent.isDown()) {
-            velocityComponent.setSpeed(velocityComponent.speed.x, -BACKGROUND_SPEED);
+            if(transformComponent.position.y > 80) {
+                velocityComponent.setSpeed(velocityComponent.speed.x, -BACKGROUND_SPEED);
+            } else {
+                velocityComponent.setSpeed(velocityComponent.speed.x, SPEED);
+            }
             Tween tweenPos = Tween.to(entity, K2EntityTweenAccessor.ROTATION, 0.5f)
                     .ease(TweenEquations.easeOutCubic)
                     .target(-MAX_TILT);
@@ -83,8 +97,20 @@ public class ControlSystem extends IteratingSystem {
                     .addTween(tweenPos));
         }
 
+
+
+
         if (controlComponent.isAttack()) {
-            getEngine().addEntity(BulletFactory.create(getEngine(), transformComponent));
+            ShooterComponent shooterComponent = entity.getComponent(ShooterComponent.class);
+
+            if (shooterComponent != null) {
+                Vector2 point = new Vector2();
+                shooterComponent.getAttachment().computeWorldPosition(shooterComponent.getBone(), point);
+                float rotation = shooterComponent.getAttachment().computeWorldRotation(shooterComponent.getBone());
+                getEngine().addEntity(BulletFactory.createFromPoint(getEngine(), point,rotation));
+
+            }
+            //getEngine().addEntity(BulletFactory.create(getEngine(), transformComponent));
             controlComponent.setAttack(false);
         }
     }

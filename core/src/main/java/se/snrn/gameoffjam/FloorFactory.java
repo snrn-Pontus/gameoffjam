@@ -10,7 +10,7 @@ import se.snrn.gameoffjam.components.MapSegmentComponent;
 
 import java.util.Random;
 
-import static se.snrn.gameoffjam.GameOffJam.*;
+import static se.snrn.gameoffjam.ScreenManager.*;
 
 public class FloorFactory {
     public static Entity create(Engine engine, float x, float y) {
@@ -26,17 +26,19 @@ public class FloorFactory {
 
         Random random = new Random();
 
-        BackgroundFactory.create(engine, x, y+32, 0.5f, new Texture("images/mountain.png"));
-        BackgroundFactory.create(engine, x, y+32, 0.5f, new Texture("images/mountain.png"));
-        BackgroundFactory.create(engine, x, y+32, 0.5f, new Texture("images/mountain.png"));
+        BackgroundFactory.create(engine, x, y+32, 0.5f,2, new Texture("images/mountain.png"));
+        BackgroundFactory.create(engine, x, y+32, 0.5f,2, new Texture("images/mountain.png"));
+        BackgroundFactory.create(engine, x, y+32, 0.5f,2, new Texture("images/mountain.png"));
 
-        BackgroundFactory.create(engine, x, y+32, 1f, new Texture("images/bush.png"));
-        BackgroundFactory.create(engine, x, y+32, 1f, new Texture("images/bush.png"));
-        BackgroundFactory.create(engine, x, y+32, 1f, new Texture("images/bush.png"));
+        BackgroundFactory.create(engine, x, y+32, 1f,1, new Texture("images/bush.png"));
+        BackgroundFactory.create(engine, x, y+32, 1f,1, new Texture("images/bush.png"));
+        BackgroundFactory.create(engine, x, y+32, 1f,1, new Texture("images/bush.png"));
 
         engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
         engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
         engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
+
+
 
         return e;
 

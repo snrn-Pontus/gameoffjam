@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE table SYSTEM "lml-vis1_8.dtd">
+<table id="table" fillparent="true">
+
+    <verticalflowgroup id="paintmap" height="288">
+        <:loop times="288">
+            <container size="32">
+                <image style="icon" onclick="$paint"/>
+            </container>
+        </:loop>
+    </verticalflowgroup>
+    <:row/>
+    <dragpane id="palette" itemSize="32" type="fixed" itemsAmount="9" width="288" height="32">
+        <image style="icon" color="red" onclick="$setColor"/>
+        <image style="icon" color="green" onclick="$setColor"/>
+        <image style="icon" color="blue" onclick="$setColor"/>
+        <image style="icon" color="white" onclick="$setColor"/>
+        <image style="icon" color="black" onclick="$setColor"/>
+        <image style="icon" color="yellow" onclick="$setColor"/>
+    </dragpane>
+    <:row/>
+    <table>
+        <textbutton onchange="$save">Save</textbutton>
+        <textfield id="name"/>
+        <textbutton onchange="$load">Load</textbutton>
+        <selectbox id="files"/>
+    </table>
+</table>

@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import se.snrn.gameoffjam.components.CameraComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.WIDTH;
+import static se.snrn.gameoffjam.ScreenManager.WIDTH;
 
 public class CameraSystem extends IteratingSystem {
 
