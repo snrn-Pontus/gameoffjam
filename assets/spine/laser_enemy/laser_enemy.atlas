@@ -1,0 +1,41 @@
+
+laser_enemy.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lager_1
+  rotate: false
+  xy: 2, 66
+  size: 220, 188
+  orig: 220, 188
+  offset: 0, 0
+  index: -1
+Lager_2
+  rotate: true
+  xy: 2, 25
+  size: 39, 126
+  orig: 39, 126
+  offset: 0, 0
+  index: -1
+Lager_3
+  rotate: false
+  xy: 224, 72
+  size: 178, 182
+  orig: 178, 182
+  offset: 0, 0
+  index: -1
+Lager_4
+  rotate: false
+  xy: 404, 184
+  size: 99, 70
+  orig: 99, 70
+  offset: 0, 0
+  index: -1
+Lager_5
+  rotate: false
+  xy: 224, 2
+  size: 96, 68
+  orig: 96, 68
+  offset: 0, 0
+  index: -1

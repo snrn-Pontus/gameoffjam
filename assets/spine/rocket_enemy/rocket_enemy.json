@@ -1,0 +1,208 @@
+{
+  "skeleton": {
+    "hash": "EReceMXa/O2Jtd8mU/DtrXmX7QE",
+    "spine": "3.6.53",
+    "width": 669.53,
+    "height": 175.95,
+    "images": "../../../Downloads/enemies images/rocket/"
+  },
+  "bones": [
+    {
+      "name": "root"
+    },
+    {
+      "name": "bone",
+      "parent": "root",
+      "length": 143.33,
+      "rotation": -177.78,
+      "x": 0.12,
+      "y": 0.98
+    },
+    {
+      "name": "bone2",
+      "parent": "bone",
+      "length": 172.98,
+      "rotation": 15.83,
+      "x": 143.29,
+      "y": -0.92
+    },
+    {
+      "name": "bone3",
+      "parent": "bone",
+      "length": 164.92,
+      "rotation": -9.62,
+      "x": 145.95,
+      "y": -3.8
+    }
+  ],
+  "slots": [
+    {
+      "name": "Lager_11",
+      "bone": "bone",
+      "attachment": "Lager_11"
+    },
+    {
+      "name": "flames",
+      "bone": "bone",
+      "attachment": "flames"
+    },
+    {
+      "name": "Lager_3",
+      "bone": "bone",
+      "attachment": "Lager_3"
+    },
+    {
+      "name": "Lager_12",
+      "bone": "bone",
+      "attachment": "Lager_12"
+    },
+    {
+      "name": "Lager_13",
+      "bone": "bone2",
+      "attachment": "Lager_13"
+    },
+    {
+      "name": "Lager_9",
+      "bone": "bone3",
+      "attachment": "Lager_9"
+    },
+    {
+      "name": "Lager_8",
+      "bone": "bone2",
+      "attachment": "Lager_8"
+    },
+    {
+      "name": "Lager_7",
+      "bone": "bone3",
+      "attachment": "Lager_7"
+    },
+    {
+      "name": "Lager_10",
+      "bone": "bone3",
+      "attachment": "Lager_10"
+    }
+  ],
+  "skins": {
+    "default": {
+      "Lager_10": {
+        "Lager_10": {
+          "x": 49.44,
+          "y": -23.77,
+          "rotation": -172.6,
+          "width": 61,
+          "height": 38
+        }
+      },
+      "Lager_11": {
+        "Lager_11": {
+          "x": -195.82,
+          "y": -6.78,
+          "rotation": 177.78,
+          "width": 37,
+          "height": 139
+        }
+      },
+      "Lager_12": {
+        "Lager_12": {
+          "x": -192.8,
+          "y": -6.98,
+          "rotation": 177.78,
+          "width": 20,
+          "height": 140
+        }
+      },
+      "Lager_13": {
+        "Lager_13": {
+          "x": 140.69,
+          "y": -16.08,
+          "rotation": 161.95,
+          "width": 66,
+          "height": 36
+        }
+      },
+      "Lager_3": {
+        "Lager_3": {
+          "x": -44.61,
+          "y": -1.56,
+          "rotation": 177.78,
+          "width": 308,
+          "height": 161
+        }
+      },
+      "Lager_7": {
+        "Lager_7": {
+          "x": 63.39,
+          "y": -23.41,
+          "rotation": -172.6,
+          "width": 220,
+          "height": 84
+        }
+      },
+      "Lager_8": {
+        "Lager_8": {
+          "x": 69.67,
+          "y": 19.26,
+          "rotation": 161.95,
+          "width": 221,
+          "height": 94
+        }
+      },
+      "Lager_9": {
+        "Lager_9": {
+          "x": 133.92,
+          "y": 18.5,
+          "rotation": -172.6,
+          "width": 64,
+          "height": 38
+        }
+      },
+      "flames": {
+        "flames": {
+          "x": -273.15,
+          "y": -6.61,
+          "rotation": 177.78,
+          "width": 162,
+          "height": 120
+        }
+      }
+    }
+  },
+  "animations": {
+    "animation": {
+      "bones": {
+        "bone2": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            },
+            {
+              "time": 0.5,
+              "angle": -8.07
+            },
+            {
+              "time": 1,
+              "angle": 0
+            }
+          ]
+        },
+        "bone3": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            },
+            {
+              "time": 0.5,
+              "angle": 3.92
+            },
+            {
+              "time": 1,
+              "angle": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -7,16 +7,14 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
-import com.esotericsoftware.spine.attachments.PointAttachment;
 import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TweenComponent;
 import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
-import se.snrn.gameoffjam.BulletFactory;
+import se.snrn.gameoffjam.factories.BulletFactory;
 import se.snrn.gameoffjam.components.ControlComponent;
 import se.snrn.gameoffjam.components.ShooterComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.*;
 import static se.snrn.gameoffjam.ScreenManager.*;
 
 public class ControlSystem extends IteratingSystem {

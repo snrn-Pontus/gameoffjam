@@ -8,15 +8,15 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.roaringcatgames.kitten2d.ashley.K2EntityTweenAccessor;
 import com.roaringcatgames.kitten2d.ashley.components.*;
 import com.strongjoshua.console.LogLevel;
-import se.snrn.gameoffjam.CollectibleFactory;
+import se.snrn.gameoffjam.factories.CollectibleFactory;
 import se.snrn.gameoffjam.Type;
-import se.snrn.gameoffjam.WreckFactory;
+import se.snrn.gameoffjam.factories.WreckFactory;
 import se.snrn.gameoffjam.components.LightningComponent;
 import se.snrn.gameoffjam.components.PlayerComponent;
 import se.snrn.gameoffjam.components.TimedComponent;
 import se.snrn.gameoffjam.components.TypeComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.console;
+import static se.snrn.gameoffjam.GameScreen.console;
 
 public class CollisionSystem extends IteratingSystem {
 

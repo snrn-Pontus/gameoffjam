@@ -176,6 +176,8 @@ public class MapBuilder extends ScreenAdapter implements Screen {
                 image.setColor(Color.GREEN);
             } else if (mapArray[x][y] == MOUNTAIN) {
                 image.setColor(Color.BLUE);
+            } else if (mapArray[x][y] == TREE) {
+                image.setColor(Color.YELLOW);
             }
             y++;
 
@@ -185,7 +187,7 @@ public class MapBuilder extends ScreenAdapter implements Screen {
             }
         }
 
-        screenManager.switchScreens("gameOffJam");
+        screenManager.switchScreens("gameScreen");
 
     }
 
@@ -207,6 +209,8 @@ public class MapBuilder extends ScreenAdapter implements Screen {
                 mapArray[x][y] = BUSH;
             } else if (image.getColor().equals(Color.BLUE)) {
                 mapArray[x][y] = MOUNTAIN;
+            } else if (image.getColor().equals(Color.YELLOW)) {
+                mapArray[x][y] = TREE;
             }
             y++;
 

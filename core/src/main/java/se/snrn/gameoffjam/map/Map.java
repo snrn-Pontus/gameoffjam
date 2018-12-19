@@ -9,13 +9,12 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.roaringcatgames.kitten2d.ashley.components.BoundsComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
-import se.snrn.gameoffjam.BackgroundFactory;
-import se.snrn.gameoffjam.EnemyFactory;
 import se.snrn.gameoffjam.components.MapSegmentComponent;
+import se.snrn.gameoffjam.factories.BackgroundFactory;
+import se.snrn.gameoffjam.factories.EnemyFactory;
 
 import java.util.Arrays;
 
-import static se.snrn.gameoffjam.GameOffJam.*;
 import static se.snrn.gameoffjam.ScreenManager.*;
 
 
@@ -23,6 +22,9 @@ public class Map {
     public static final int ROBOT = 1;
     public static final int MOUNTAIN = 32;
     public static final int BUSH = 33;
+    public static final int TREE = 34;
+    public static final int CLOUD = 35;
+    public static final int HILL = 36;
     private static JsonReader jsonReader = new JsonReader();
 
     public Map(String path, Engine engine, float x, float y) {
@@ -31,26 +33,12 @@ public class Map {
         for (int i = 0; i < parsedMap.size; i++) {
             map[i] = parsedMap.get(i).asIntArray();
         }
-        System.out.println(Arrays.toString(map[0]));
 
         for (int j = 0; j < map.length; j++) {
             for (int i = 0; i < map[j].length; i++) {
                 float x1 = x + j * 80 + 40;
                 float y1 = y + i * 80 + 40;
-                switch (map[j][i]) {
-                    case ROBOT: {
-                        engine.addEntity(EnemyFactory.create(engine, x1, y1));
-                        break;
-                    }
-                    case MOUNTAIN: {
-                        BackgroundFactory.create(engine, x1, y1, 0.5f, 2, new Texture("images/mountain.png"));
-                        break;
-                    }
-                    case BUSH: {
-                        BackgroundFactory.create(engine, x1, y1, 1f, 1, new Texture("images/bush.png"));
-                        break;
-                    }
-                }
+                createMapItem(engine, map[j][i], x1, y1);
             }
         }
         Entity background = engine.createEntity();
@@ -61,6 +49,36 @@ public class Map {
         background.add(BoundsComponent.create(engine).setBounds(x + (SEGMENT_WIDTH / 2f), y, SEGMENT_WIDTH, 32));
 
         engine.addEntity(background);
+    }
+
+
+    private void createMapItem(Engine engine, int i, float x1, float y1) {
+        switch (i) {
+            case ROBOT: {
+                EnemyFactory.create(engine, x1, y1);
+                break;
+            }
+            case MOUNTAIN: {
+                BackgroundFactory.create(engine, x1, y1, 10, new Texture("images/mountain.png"));
+                break;
+            }
+            case BUSH: {
+                BackgroundFactory.create(engine, x1, y1, 2, new Texture("images/bush.png"));
+                break;
+            }
+            case TREE: {
+                BackgroundFactory.create(engine, x1, y1, 4, new Texture("images/trees/tree1.png"));
+                break;
+            }
+            case CLOUD: {
+                BackgroundFactory.create(engine, x1, y1, 7, new Texture("images/clouds/cloud1.png"));
+                break;
+            }
+            case HILL: {
+                BackgroundFactory.create(engine, x1, y1, 5, new Texture("images/hills/hill1.png"));
+                break;
+            }
+        }
     }
 
     public static JsonValue load(String path) {

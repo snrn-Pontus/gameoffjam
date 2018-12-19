@@ -101,15 +101,14 @@ public class SpineSystem extends IteratingSystem {
                 isDebugMode = !isDebugMode;
             }
 
-        //  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
         batch.setProjectionMatrix(camera.combined);
         debugRenderer.getShapeRenderer().setProjectionMatrix(camera.combined);
 
 
+        batch.begin();
         for (Entity entity : renderQueue) {
-            batch.begin();
 
             AnimationStateComponent animationStateComponent = asm.get(entity);
             SkeletonComponent skeletonComponent = sm.get(entity);
@@ -138,12 +137,12 @@ public class SpineSystem extends IteratingSystem {
 
             skeletonRenderer.draw(batch, skeletonComponent.getSkeleton());
 
-            batch.end();
 
             if (isDebugMode) {
                 debugRenderer.draw(skeletonComponent.getSkeleton());
             }
         }
+        batch.end();
 
         renderQueue.clear();
     }

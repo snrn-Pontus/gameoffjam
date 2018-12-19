@@ -10,7 +10,7 @@ import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.strongjoshua.console.LogLevel;
 import se.snrn.gameoffjam.components.CleanUpComponent;
 
-import static se.snrn.gameoffjam.GameOffJam.console;
+import static se.snrn.gameoffjam.GameScreen.console;
 
 public class CleanUpSystem extends IteratingSystem {
 

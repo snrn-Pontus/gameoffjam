@@ -1,0 +1,226 @@
+{
+  "skeleton": {
+    "hash": "51S7NUpwwI8GDtIGNlEOTH0ewd4",
+    "spine": "3.6.53",
+    "width": 387.83,
+    "height": 354.21,
+    "images": "../../../Downloads/enemies images/laser/"
+  },
+  "bones": [
+    {
+      "name": "root"
+    },
+    {
+      "name": "bone",
+      "parent": "root",
+      "length": 105.77,
+      "rotation": 91.35,
+      "x": 2.33,
+      "y": 2.81
+    },
+    {
+      "name": "bone2",
+      "parent": "bone",
+      "length": 110.94,
+      "rotation": 0.31,
+      "x": 110.61,
+      "y": -9.77
+    },
+    {
+      "name": "bone3",
+      "parent": "bone",
+      "length": 85.31,
+      "rotation": 90,
+      "x": 58.07,
+      "y": 73.54
+    }
+  ],
+  "slots": [
+    {
+      "name": "Lager_5",
+      "bone": "root",
+      "attachment": "Lager_5"
+    },
+    {
+      "name": "Lager_4",
+      "bone": "root",
+      "attachment": "Lager_4"
+    },
+    {
+      "name": "Lager_1",
+      "bone": "bone",
+      "attachment": "Lager_1"
+    },
+    {
+      "name": "Lager_2",
+      "bone": "bone2",
+      "attachment": "Lager_2"
+    },
+    {
+      "name": "Lager_3",
+      "bone": "bone3",
+      "attachment": "Lager_3"
+    }
+  ],
+  "skins": {
+    "default": {
+      "Lager_1": {
+        "Lager_1": {
+          "x": 24.84,
+          "y": 4.63,
+          "rotation": -91.35,
+          "width": 220,
+          "height": 188
+        }
+      },
+      "Lager_2": {
+        "Lager_2": {
+          "x": 60.07,
+          "y": -0.8,
+          "rotation": -91.66,
+          "width": 39,
+          "height": 126
+        }
+      },
+      "Lager_3": {
+        "Lager_3": {
+          "x": 119.15,
+          "y": -1.72,
+          "rotation": 178.65,
+          "width": 178,
+          "height": 182
+        }
+      },
+      "Lager_4": {
+        "Lager_4": {
+          "x": -49.76,
+          "y": -82.52,
+          "width": 99,
+          "height": 70
+        }
+      },
+      "Lager_5": {
+        "Lager_5": {
+          "x": 58.59,
+          "y": -78.63,
+          "width": 96,
+          "height": 68
+        }
+      }
+    }
+  },
+  "animations": {
+    "animation": {
+      "bones": {
+        "bone3": {
+          "rotate": [
+            {
+              "time": 0,
+              "angle": 0
+            }
+          ],
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            },
+            {
+              "time": 0.5,
+              "x": 1,
+              "y": 0
+            },
+            {
+              "time": 1,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "root": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "bone": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        "bone2": {
+          "translate": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "scale": [
+            {
+              "time": 0,
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "shear": [
+            {
+              "time": 0,
+              "x": 0,
+              "y": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+}

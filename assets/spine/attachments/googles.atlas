@@ -1,0 +1,20 @@
+
+googles.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+googles
+  rotate: false
+  xy: 2, 2
+  size: 77, 34
+  orig: 77, 34
+  offset: 0, 0
+  index: -1
+laser
+  rotate: false
+  xy: 2, 38
+  size: 138, 64
+  orig: 138, 64
+  offset: 0, 0
+  index: -1

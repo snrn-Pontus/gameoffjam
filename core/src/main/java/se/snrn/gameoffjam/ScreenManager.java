@@ -22,7 +22,7 @@ public class ScreenManager implements IGameProcessor, ApplicationListener {
     public static final int BACKGROUND_SPEED = 256;
     public static final int MAX_TILT = 20;
 
-    private GameOffJam gameOffJam;
+    private GameScreen gameScreen;
     private MapBuilder mapBuilder;
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -87,9 +87,9 @@ public class ScreenManager implements IGameProcessor, ApplicationListener {
         batch = new SpriteBatch();
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
-        gameOffJam = new GameOffJam(this);
+        gameScreen = new GameScreen(this);
         mapBuilder = new MapBuilder(this);
-        screens.put("gameOffJam", gameOffJam);
+        screens.put("gameScreen", gameScreen);
         screens.put("mapBuilder", mapBuilder);
         screen = mapBuilder;
     }

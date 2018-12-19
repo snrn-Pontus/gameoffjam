@@ -1,0 +1,1 @@
+{"skeleton":{"hash":"D+M9akRoipguuuc/SLYlpFAnLZU","spine":"3.6.53","width":138,"height":64,"images":"../../../Downloads/enemies images/llama/"},"bones":[{"name":"root","y":7.01}],"slots":[{"name":"laser","bone":"root","attachment":"laser"}],"skins":{"default":{"laser":{"laser":{"x":2.67,"y":11.67,"width":138,"height":64}}}},"animations":{"animation":{}}}

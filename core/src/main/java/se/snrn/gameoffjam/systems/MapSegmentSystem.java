@@ -11,7 +11,7 @@ import com.strongjoshua.console.LogLevel;
 import se.snrn.gameoffjam.components.MapSegmentComponent;
 import se.snrn.gameoffjam.map.Map;
 
-import static se.snrn.gameoffjam.GameOffJam.console;
+import static se.snrn.gameoffjam.GameScreen.console;
 import static se.snrn.gameoffjam.ScreenManager.SEGMENT_WIDTH;
 
 public class MapSegmentSystem extends IteratingSystem {

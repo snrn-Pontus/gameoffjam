@@ -1,0 +1,55 @@
+
+llama.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Lager_1
+  rotate: false
+  xy: 2, 160
+  size: 323, 284
+  orig: 323, 284
+  offset: 0, 0
+  index: -1
+Lager_11
+  rotate: false
+  xy: 641, 343
+  size: 65, 101
+  orig: 65, 101
+  offset: 0, 0
+  index: -1
+Lager_3
+  rotate: false
+  xy: 327, 165
+  size: 312, 279
+  orig: 312, 279
+  offset: 0, 0
+  index: -1
+Lager_4
+  rotate: false
+  xy: 641, 335
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+Lager_5
+  rotate: false
+  xy: 2, 2
+  size: 24, 7
+  orig: 24, 7
+  offset: 0, 0
+  index: -1
+Lager_6
+  rotate: true
+  xy: 2, 11
+  size: 147, 265
+  orig: 147, 265
+  offset: 0, 0
+  index: -1
+Lager_9
+  rotate: false
+  xy: 269, 148
+  size: 14, 10
+  orig: 14, 10
+  offset: 0, 0
+  index: -1

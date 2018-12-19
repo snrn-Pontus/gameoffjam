@@ -1,0 +1,76 @@
+
+robot_enemy.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+antenna
+  rotate: true
+  xy: 829, 215
+  size: 39, 152
+  orig: 39, 152
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 36
+  size: 341, 218
+  orig: 341, 218
+  offset: 0, 0
+  index: -1
+botteeth
+  rotate: false
+  xy: 682, 190
+  size: 145, 64
+  orig: 145, 64
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 455, 36
+  size: 57, 62
+  orig: 57, 62
+  offset: 0, 0
+  index: -1
+jaw
+  rotate: false
+  xy: 345, 192
+  size: 335, 62
+  orig: 335, 62
+  offset: 0, 0
+  index: -1
+jet1
+  rotate: true
+  xy: 345, 2
+  size: 96, 108
+  orig: 96, 108
+  offset: 0, 0
+  index: -1
+jet2
+  rotate: true
+  xy: 653, 121
+  size: 67, 102
+  orig: 67, 102
+  offset: 0, 0
+  index: -1
+jet3
+  rotate: true
+  xy: 549, 91
+  size: 99, 102
+  orig: 99, 102
+  offset: 0, 0
+  index: -1
+mid
+  rotate: false
+  xy: 345, 100
+  size: 202, 90
+  orig: 202, 90
+  offset: 0, 0
+  index: -1
+topteeth
+  rotate: false
+  xy: 829, 164
+  size: 116, 49
+  orig: 116, 49
+  offset: 0, 0
+  index: -1
