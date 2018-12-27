@@ -61,7 +61,7 @@ public class MapBuilder extends ScreenAdapter implements Screen {
         this.screenManager = screenManager;
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
 
-        skin = new Skin(Gdx.files.internal("ui/skin.json"));
+        skin = new Skin(Gdx.files.internal("ui/pink/dreams-of-pink.json"));
 
         final VisLmlParserBuilder visLmlParserBuilder = new VisLmlParserBuilder();
 
@@ -170,7 +170,7 @@ public class MapBuilder extends ScreenAdapter implements Screen {
             System.out.println(x + ":" + y);
             Container<VisImage> container = (Container<VisImage>) child;
             VisImage image = container.getActor();
-            if (mapArray[x][y] == ROBOT) {
+            if (mapArray[x][y] == ROBOT_ENEMY) {
                 image.setColor(Color.RED);
             } else if (mapArray[x][y] == BUSH) {
                 image.setColor(Color.GREEN);
@@ -204,7 +204,7 @@ public class MapBuilder extends ScreenAdapter implements Screen {
             Container<VisImage> container = (Container<VisImage>) child;
             VisImage image = container.getActor();
             if (image.getColor().equals(Color.RED)) {
-                mapArray[x][y] = ROBOT;
+                mapArray[x][y] = ROBOT_ENEMY;
             } else if (image.getColor().equals(Color.GREEN)) {
                 mapArray[x][y] = BUSH;
             } else if (image.getColor().equals(Color.BLUE)) {

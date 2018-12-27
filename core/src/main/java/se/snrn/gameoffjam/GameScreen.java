@@ -21,6 +21,7 @@ import com.github.czyzby.kiwi.util.gdx.asset.Disposables;
 import com.github.czyzby.lml.parser.LmlParser;
 import com.github.czyzby.lml.parser.action.ActorConsumer;
 import com.github.czyzby.lml.util.Lml;
+import com.kotcrab.vis.ui.VisUI;
 import com.roaringcatgames.kitten2d.ashley.components.TextureComponent;
 import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.systems.*;
@@ -44,13 +45,14 @@ public class GameScreen extends ScreenAdapter {
     private InputManager inputManager;
     public static GUIConsole console;
     private ScreenManager screenManager;
+    public static Entity player;
 
     public GameScreen(ScreenManager screenManager) {
         super();
         this.screenManager = screenManager;
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
 
-        skin = new Skin(Gdx.files.internal("ui/skin.json"));
+        skin = new Skin(Gdx.files.internal("ui/pink/dreams-of-pink.json"));
 
         LmlParser parser = Lml.parser(skin)
                 // Adding action for the button listener:
@@ -99,12 +101,11 @@ public class GameScreen extends ScreenAdapter {
         engine.addSystem(new CleanUpSystem(screenManager.getCamera()));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new FollowerSystem(Family.all(PlayerComponent.class).get()));
-        engine.addSystem(new MultiBoundsSystem());
         engine.addSystem(new LightningSystem(screenManager.getBatch()));
         engine.addSystem(new LaserSystem(screenManager.getBatch()));
         engine.addSystem(new ParticleSystem());
 
-        Entity player = PlayerFactory.create(engine, 0, HEIGHT / 2f);
+        player = PlayerFactory.create(engine, 0, HEIGHT / 2f);
         engine.addEntity(player);
 
         Entity background = engine.createEntity();
@@ -143,7 +144,6 @@ public class GameScreen extends ScreenAdapter {
 
         screenManager.addInputProcessor(stage);
         screenManager.addInputProcessor(inputManager);
-
     }
 
     @Override

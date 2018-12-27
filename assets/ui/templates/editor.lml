@@ -5,18 +5,18 @@
     <verticalflowgroup id="paintmap" height="288">
         <:loop times="288">
             <container size="32">
-                <image style="icon" onclick="$paint"/>
+                <image style="checkbox" onclick="$paint"/>
             </container>
         </:loop>
     </verticalflowgroup>
     <:row/>
     <dragpane id="palette" itemSize="32" type="fixed" itemsAmount="9" width="288" height="32">
-        <image style="icon" color="red" onclick="$setColor"/>
-        <image style="icon" color="green" onclick="$setColor"/>
-        <image style="icon" color="blue" onclick="$setColor"/>
-        <image style="icon" color="white" onclick="$setColor"/>
-        <image style="icon" color="black" onclick="$setColor"/>
-        <image style="icon" color="yellow" onclick="$setColor"/>
+        <image style="checkbox" color="red" onclick="$setColor"/>
+        <image style="checkbox" color="green" onclick="$setColor"/>
+        <image style="checkbox" color="blue" onclick="$setColor"/>
+        <image style="checkbox" color="white" onclick="$setColor"/>
+        <image style="checkbox" color="black" onclick="$setColor"/>
+        <image style="checkbox" color="yellow" onclick="$setColor"/>
     </dragpane>
     <:row/>
     <table>

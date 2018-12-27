@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE table SYSTEM "lml-vis1_8.dtd">
 <table fillparent="true">
-    <table align="topleft" expand="true">
+    <window movable="false" background="button" align="topleft" expand="true">
         <label align="top">Distance:</label>
         <label align="top" id="distance">0</label>
-    </table>
-    <table align="top" expand="true">
+    </window>
+    <window movable="false" background="button" align="top" expand="true">
         <label align="top">Score:</label>
         <label align="top" id="score">0</label>
-    </table>
-    <table align="topRight" expand="true">
+    </window>
+    <window movable="false" background="button" align="topRight" expand="true">
         <label align="top">Test:</label>
         <label align="top">0</label>
-    </table>
+    </window>
 </table>

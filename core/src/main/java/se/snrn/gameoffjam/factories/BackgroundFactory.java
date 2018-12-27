@@ -10,23 +10,24 @@ import com.roaringcatgames.kitten2d.ashley.components.TransformComponent;
 import com.roaringcatgames.kitten2d.ashley.components.VelocityComponent;
 import se.snrn.gameoffjam.components.CleanUpComponent;
 
-import java.util.Random;
-
-import static se.snrn.gameoffjam.ScreenManager.*;
+import static se.snrn.gameoffjam.ScreenManager.BACKGROUND_SPEED;
+import static se.snrn.gameoffjam.ScreenManager.PPM;
 
 public class BackgroundFactory {
-    public static Entity create(Engine engine, float x, float y, float z,Texture texture) {
+    public static Entity create(Engine engine, float x, float y, float z, Texture texture) {
 
 
         float height = texture.getHeight();
         float width = texture.getWidth();
-        float speedModifier = 1/z;
-        float scale = 1/(z/2);
+        float speedModifier = 1 / z;
+        float scale = 1 / (z / 2);
 
         Entity background = engine.createEntity();
-        background.add(TransformComponent.create(engine).setPosition(x, y,z).setScale(PPM*scale, PPM*scale));
+        background.add(TransformComponent.create(engine).setPosition(x, y, z).setScale(PPM * scale, PPM * scale));
         background.add(TextureComponent.create(engine).setRegion(new TextureRegion(texture)));
-        background.add(BoundsComponent.create(engine).setBounds(-32, -32, width*scale, height*scale));
+        background.add(BoundsComponent.create(engine).setBounds(0, 0, width * scale, height * scale));
+
+
 
         background.add(VelocityComponent.create(engine).setSpeed(-BACKGROUND_SPEED * speedModifier, 0));
         background.add(CleanUpComponent.create(engine));

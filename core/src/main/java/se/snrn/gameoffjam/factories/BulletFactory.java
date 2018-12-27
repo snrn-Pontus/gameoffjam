@@ -64,7 +64,7 @@ public class BulletFactory {
         int random = MathUtils.random(0, 4);
 
         Entity bullet = engine.createEntity();
-        Texture texture = new Texture(Gdx.files.internal("images/drop_" + random + ".png"));
+        Texture texture = new Texture(Gdx.files.internal("images/playerbullets/drop_" + random + ".png"));
         float width = texture.getWidth();
         float height = texture.getHeight();
         bullet

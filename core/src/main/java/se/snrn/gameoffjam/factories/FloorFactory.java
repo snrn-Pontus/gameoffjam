@@ -34,9 +34,9 @@ public class FloorFactory {
         BackgroundFactory.create(engine, x, y+32, 1f, new Texture("images/bush.png"));
         BackgroundFactory.create(engine, x, y+32, 1f, new Texture("images/bush.png"));
 
-        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
-        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
-        engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT));
+        //engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT, 1));
+        //engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT, 2));
+        //engine.addEntity(EnemyFactory.create(engine, x + random.nextFloat() * SEGMENT_WIDTH, y + 64 + random.nextFloat() * HEIGHT, 3));
 
 
 

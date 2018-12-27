@@ -37,7 +37,7 @@ public class WreckFactory {
                     .add(BoundsComponent.create(engine).setBounds(x, y, width / (PPM / 2f), height / (PPM / 2f)))
                     .add(TimedComponent.create(engine).setLifespan(3.5f))
                     .add(ParticleEmitterComponent.create(engine)
-                            .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("images/wreck.png"))))
+                            .setParticleImage(new TextureRegion(new Texture(Gdx.files.internal("test.png"))))
                             .setDuration(0.2f)
                             .setParticleMinMaxScale(PPM, PPM)
                             .setShouldLoop(true)

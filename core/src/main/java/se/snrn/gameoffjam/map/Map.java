@@ -13,13 +13,13 @@ import se.snrn.gameoffjam.components.MapSegmentComponent;
 import se.snrn.gameoffjam.factories.BackgroundFactory;
 import se.snrn.gameoffjam.factories.EnemyFactory;
 
-import java.util.Arrays;
-
 import static se.snrn.gameoffjam.ScreenManager.*;
 
 
 public class Map {
-    public static final int ROBOT = 1;
+    public static final int ROBOT_ENEMY = 1;
+    public static final int ROCKET_ENEMY = 2;
+    public static final int LASER_ENEMY = 3;
     public static final int MOUNTAIN = 32;
     public static final int BUSH = 33;
     public static final int TREE = 34;
@@ -54,8 +54,16 @@ public class Map {
 
     private void createMapItem(Engine engine, int i, float x1, float y1) {
         switch (i) {
-            case ROBOT: {
-                EnemyFactory.create(engine, x1, y1);
+            case ROBOT_ENEMY: {
+                EnemyFactory.create(engine, x1, y1, i);
+                break;
+            }
+            case ROCKET_ENEMY: {
+                EnemyFactory.create(engine, x1, y1, i);
+                break;
+            }
+            case LASER_ENEMY: {
+                EnemyFactory.create(engine, x1, y1, i);
                 break;
             }
             case MOUNTAIN: {

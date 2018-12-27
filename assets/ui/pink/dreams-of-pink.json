@@ -1,0 +1,231 @@
+{
+  com.badlogic.gdx.graphics.g2d.BitmapFont: {
+    button: {
+      file: BarlowSemiCondensed-SemiBold.fnt
+    }
+    button-small: {
+      file: BarlowSemiCondensed-Regular.fnt
+    }
+    font: {
+      file: BarlowSemiCondensed-Light.fnt
+    }
+    heading: {
+      file: BarlowSemiCondensed-Medium.fnt
+    }
+  }
+  com.badlogic.gdx.graphics.Color: {
+    black: {
+      r: 0
+      g: 0
+      b: 0
+      a: 1
+    }
+    gray: {
+      r: 0.76862746
+      g: 0.7254902
+      b: 0.7764706
+      a: 1
+    }
+    pink: {
+      r: 1
+      g: 0
+      b: 1
+      a: 1
+    }
+    dark-pink: {
+      r: 0.38458335
+      g: 0
+      b: 0.39
+      a: 1
+    }
+    text-selection: {
+      r: 0
+      g: 0.7490554
+      b: 1
+      a: 1
+    }
+    white: {
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    }
+    red: { r: 1, g: 0, b: 0, a: 1 },
+    green: { r: 0, g: 1, b: 0, a: 1 },
+    blue: { r: 0, g: 0, b: 1, a: 1 },
+    yellow: { r: 1, g: 1, b: 0, a: 1, },
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+    black: {
+      name: white
+      color: black
+    }
+    text-selection: {
+      name: white
+      color: text-selection
+    }
+    dark-pink: {
+      name: white
+      color: dark-pink
+    }
+    pink: {
+      name: white
+      color: pink
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable: {
+    progress-bar-filled-tile: {
+      region: progress-bar-filled
+      color: white
+      minWidth: 0
+      minHeight: 30
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+    default: {
+      up: button
+      down: button-pressed
+      over: button-over
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+    default: {
+      checkboxOn: checkbox-pressed
+      checkboxOff: checkbox
+      font: font
+      fontColor: white
+      overFontColor: pink
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+    default: {
+      up: button
+      down: button-pressed
+      over: button-over
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+    default: {
+      font: button
+      up: button
+      down: button-pressed
+      over: button-over
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+    default: {
+      font: font
+    }
+    heading: {
+      font: heading
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
+    default: {
+      font: font
+      fontColorSelected: white
+      fontColorUnselected: pink
+      selection: selection
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+    default-horizontal: {
+      background: progress-bar-bg
+      knobBefore: progress-bar-filled-tile
+    }
+    default-vertical: {
+      background: progress-bar-bg
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+    default: {
+      background: scroll-pane-bg
+      hScrollKnob: horizontal-scroll
+      vScrollKnob: vertical-scroll
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+    default: {
+      font: font
+      fontColor: pink
+      background: select-box
+      scrollStyle: default
+      listStyle: default
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+    default-horizontal: {
+      background: slider-bg
+      knob: slider-knob
+    }
+    default-vertical: {
+      background: slider-bg
+      knob: slider-knob
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
+    default-horizontal: {
+      handle: split-pane
+    }
+    default-vertical: {
+      handle: split-pane
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+    default: {
+      font: button
+      up: button
+      down: button-pressed
+      over: button-over
+    }
+    square: {
+      font: button-small
+      up: button-square
+      down: button-square-pressed
+      over: button-square-over
+    }
+    link: {
+      font: font
+      fontColor: white
+      downFontColor: dark-pink
+      overFontColor: pink
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+    default: {
+      font: button-small
+      fontColor: pink
+      background: textfield
+      focusedBackground: textfield-focused
+      cursor: black
+      selection: text-selection
+      messageFont: button-small
+      messageFontColor: gray
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+    default: {
+      label: default
+      background: button
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
+    default: {
+      background: touch-pad
+      knob: touch-pad-knob
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
+    default: {
+      plus: tree-plus
+      minus: tree-minus
+    }
+  }
+  com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+    default: {
+      background: window
+      titleFont: heading
+      titleFontColor: pink
+    }
+  }
+}
